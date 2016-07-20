@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="NewTestService.js"></script>
+</head>
+<body ng-app="newTest">
+
+   <div ng-controller="newController">
+       <table border="1">
+           <thead>
+           <tr>
+               <td>First Name</td>
+               <td>Last Name</td>
+               <td>Salary</td>
+           </tr>
+           </thead>
+           <tbody>
+           <tr ng-repeat="employe in emp" | orderBy sortOrder>
+               <td>{{employe.firstName}}</td>
+               <td>{{employe.lstName}}</td>
+               <td>{{employe.sal}}</td>
+           </tr>
+           </tbody>
+       </table>
+       </div>
+
+</body>
+</html>

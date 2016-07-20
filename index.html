@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html ng-app="notesApp">
+<head>
+    <title>Stand-up Meeting</title>
+   <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="style/bootstrap-theme.css"/>
+</head>
+<body>
+
+
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Virtual Stand-up</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/">Home</a></li>
+                <li><a href="newnote.html">New Note</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+</div>
+
+<div class="container"  >
+
+    <div class="text-center">
+        <h1>Virtual Stand-up Meeting Notes</h1>
+        <p class="lead">
+        This is a list of the last dozen meeting notes that were entered in. </p>
+    </div>
+
+    <div ng-controller="notecontroller">
+        <!--<h2>Latest Notes</h2>-->
+        <div class="container" >
+            <!--Filter notes list by member name-->
+            <!--<form action="/" method="post">-->
+                <div class="row clearfix">
+                    <div class="col-md-3 column">
+                        <select id="memberName" name="memberName" class="form-control" ng-model="sortOrder">
+                            <option value="">(Select Name)</option>
+                            <option value="memberName">memberName</option>
+                            <option value="project">project</option>
+                            <!--<option value="Vivek">Vivek</option>
+                            <option value="Jayvee">Jayvee</option>
+                            <option value="Mrudula">Mrudula</option>-->
+                        </select>
+                    </div>
+                    <div class="col-md-8 column">
+                        <!-- Button -->
+                        <button id="btnFilterNotes" name="btnFilterNotes" class="btn btn-primary" type="submit">Sort Order...</button>
+                    </div>
+                </div>
+            <!--</form>-->
+        </div>
+        <br />
+        <div class="container" >
+            <div class="col-md-12 column list-group" >
+                <div class="list-group-item" ng-repeat="note in notes | orderBy:sortOrder">
+                    <div>Note from <em><strong>{{note.memberName | lowercase}}</strong></em> on: {{note.date | date:'dd-MM-yyyy'}}
+                        - for project: <strong>{{note.project}}</strong></div>
+                    <div><strong>Work yesterday:</strong> {{note.worksYesterday}}</div>
+                    <div><strong>Work today:</strong> {{note.worksToday}}</div>
+                    <div><strong>Impediment:</strong> {{note.impediment}}</div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div><!-- /.container -->
+</body>
+<script src="lib/angular/angular.min.js"></script>
+<script src="app.js"></script>
+<script src="controllers/notecontroller.js"></script>
+<script src="Service/notesService.js"></script>
+</html>

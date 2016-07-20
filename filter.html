@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myFilter">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="Service/filterService.js"></script>
+</head>
+<body>
+<div ng-controller="filterController">
+    rows to display:<input type="number" step="1" min="1" max="4" ng-model="rowLimit"/>
+    <table border="1">
+        <thead>
+        <tr>
+            <td>Name</td>
+            <td>DOB</td>
+            <td>Gender</td>
+            <td>Sal</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="filter in employe | limitTo:rowLimit">
+            <td>{{filter.name}}</td>
+            <td>{{filter.DOB | date:"dd/MM/yyyy"}}</td>
+            <td>{{filter.gender}}</td>
+            <td>{{filter.Sal}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
